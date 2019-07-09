@@ -22,20 +22,19 @@ class App extends Component {
     event.preventDefault();
     fetch(`/api/greeting?name=${encodeURIComponent(this.state.name)}`)
       .then(response => response.json())
-      .then(state => this.setState(state));
+      .then(state => this.setState(state))
+      .catch(err => console.log(err))
   }
 
   render() {
+
     return (
       <div className="App">
+
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
 
-
-             <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.handleSubmit}>
             <label htmlFor="name">Enter your name: </label>
             <input
               id="name"
@@ -46,17 +45,8 @@ class App extends Component {
             <button type="submit">Submit</button>
           </form>
           <p>{this.state.greeting}</p>
-
-
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
         </header>
+
       </div>
     );
   }
